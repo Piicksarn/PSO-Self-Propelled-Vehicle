@@ -1,0 +1,156 @@
+.title {
+  text-align: center;
+  color: #fff;
+  height: 130px;
+  background-color: #5f6777;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12),0 2px 10px 0 rgba(0,0,0,0.12);
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.setting {
+  height: 120px;
+  background-color: #fff;
+  text-align: center;
+  padding-top:10px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.settingItm {
+  float: left;
+  font-family: Verdana;
+  font-size: 12px;
+  color: #777;
+  font-weight: normal;
+  width:200px;
+  height: 100px;
+  margin-left: 40px;
+  background-color: #889;
+  padding-top: 10px;
+}
+.container {
+  float:left;
+  margin: 20px;
+  margin-left: 50px;
+  background-color: inherit;
+  width: 600px;
+}
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  font-size: 40px;
+  font-weight: normal;
+}
+span {
+  font-size: 20px;
+  display: block;
+  padding-left: 4px;
+}
+.selectBar {
+  text-align:center;
+  background-color: #444;
+  color: #fff;
+  width: 200px;
+  height: 45px;
+  font-size: 32px;
+  padding: 10px 4px 0px 4px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.selectBar select {
+  font-family: Verdana;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  height: 34px;
+  -webkit-appearance: none;
+}
+
+.selectBar select option:hover{
+  background-color: #228;
+  -webkit-appearance: none;
+}
+.list-choice{
+  width: 250px;
+  hright: 60px;
+  margin:1em auto;
+  position: relative;
+  cursor: pointer;
+}
+.list-choice input[type="radio"]{
+  position:absolute;
+  left:-9999px;
+}
+
+.list-choice-title {
+width: 100%;
+display: block;
+background: #D8D8D8;
+text-align: center;
+padding: 0.55em 1em;
+box-sizing: border-box;
+color: #FFF;
+border-radius: 0.1em;
+background-color: #f4491b;
+font-family: Verdana;
+font-weight: normal;
+text-transform: uppercase;
+font-size: 18px;
+}
+.list-choice:hover .list-choice-title {
+border-radius:0.2em 0.2em 0 0;
+}
+.list-choice-objects label:nth-last-of-type(1) span{
+  border-radius:0 0 0.2em 0.2em;
+}
+.list-choice input[type="radio"] + span {
+color: #FFF;
+background: #fbadb0;
+padding: 0.55em 1em;
+display: block;
+text-align: center;
+box-sizing: border-box;
+cursor: pointer;
+width: 100%;
+font-family: Verdana;
+font-weight: normal;
+font-size: 18px;
+}
+.list-choice-objects {
+position: absolute;
+top: 0;
+padding-top: 2.1em;
+box-sizing: border-box;
+width: 100%;
+overflow: hidden;
+max-height: 0;
+transition: all 250ms ease;
+font-family: Verdana;
+font-weight: normal;
+font-size: 20px;
+}
+.list-choice:hover .list-choice-objects  input[type="radio"] + span {
+position: relative;
+top: 0;
+transition: all 250ms ease-in-out;
+}
+.list-choice:hover input[type="radio"] + span:hover {
+background: #f7646a;
+}
+.list-choice:hover input[type="radio"]:checked + span:hover {
+background: #ed0c15;
+}
+.list-choice input[type="radio"]:checked + span {
+background: #f4491b;
+position: absolute;
+top: 0em;
+border-radius: 0.2em;
+}
+.list-choice:hover input[type="radio"]:checked + span {
+border-radius: 0;
+}
+.list-choice:hover .list-choice-objects label:nth-last-of-type(1) input[type="radio"]:checked + span{
+  border-radius:0 0 0.2em 0.2em;
+}
+
+.list-choice:hover .list-choice-objects {
+max-height: 540px;
+}
