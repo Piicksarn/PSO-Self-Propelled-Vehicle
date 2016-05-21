@@ -39,6 +39,7 @@ $("#activations input").change(function() {
         text: setTwo[i]
       }).appendTo('#dataLd');
     }
+    fileName = fileName + "Set1/";
   }
   else if($('input[name="myRadio"]:checked', '#activations').val()== 1) {
     $('#dataLd').empty();
@@ -49,5 +50,37 @@ $("#activations input").change(function() {
         text: setOne[i]
       }).appendTo('#dataLd');
     }
+    fileName = fileName + "Set2/";
   }
 });
+$("#dataLd").change(function() {
+  item = $( "#dataLd option:selected" ).text();
+  readFile();
+});
+
+
+/**
+ * readFile
+ * A function for load the file content.
+ *
+ * @name readfile
+ * @function
+ */
+var fileName = "Data/";
+var item = "";
+var nList = new Array();
+
+function readFile() {
+  var reader = new XMLHttpRequest();
+  reader.open("GET", fileName + item, false);
+  reader.send(null);
+  var content = reader.responseText;
+  var list = content.split('\n');
+  while (nList.length) {
+    nList.pop();
+  }
+  for (var i in list) {
+    if(list[i].trim() != "")
+       nList.push(list[i]);
+  }
+}
