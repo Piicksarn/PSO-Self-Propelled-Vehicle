@@ -1,7 +1,6 @@
 <html>
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/js/ion.rangeSlider.min.js"></script>
+
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/css/ion.rangeSlider.min.css">
@@ -17,34 +16,19 @@
       <!--Setting-->
         <div class="setting">
           <div class="settingItm">
-            <label for="activations">Activation</label>
+            <label for="activations">Data Set</label>
             <div class="select">
-              <select id="activations">
-                <option value="relu">ReLU</option>
-                <option value="tanh">Tanh</option>
-                <option value="sigmoid">Sigmoid</option>
-                <option value="linear">Linear</option>
-              </select>
+              <form id="activations">
+                <input type="radio" name="myRadio" id="set1" value="1"/> Set 1 <br/>
+                <input type="radio" name="myRadio" id="set2" value="2" /> Set 2 (Without Pos.)
+              </form>
             </div>
-            <label for="activations">Activation</label>
-            <div class="select">
-              <select id="activations">
-                <option value="relu">ReLU</option>
-                <option value="tanh">Tanh</option>
-                <option value="sigmoid">Sigmoid</option>
-                <option value="linear">Linear</option>
-              </select>
-            </div>
+
           </div>
           <div class="settingItm">
-            <label for="activations">Activation</label>
+            <label for="activations" id="ld">Load Data</label>
             <div class="select">
-              <select id="activations">
-                <option value="relu">ReLU</option>
-                <option value="tanh">Tanh</option>
-                <option value="sigmoid">Sigmoid</option>
-                <option value="linear">Linear</option>
-              </select>
+              <select id="dataLd"></select>
             </div>
           </div>
           <div style="width:160px; float:left; " class="settingItm">
@@ -72,44 +56,11 @@
         </div>
       </div>
     </div>
-    <script>
-    // Setting the initial angle
-    var $range = $("#range"),
-    $result = $("#angle");
-    var track = function (data) {
-      $result.html("Angle: " + data.from);
-    };
-    $range.ionRangeSlider({
-      hide_min_max: true,
-      keyboard: true,
-      min: -90,
-      max: 270,
-      from: 0,
-      grid: true,
-      onStart: track,
-      onChange: track,
-      onFinish: track,
-      onUpdate: track
-    });
 
-   $(function () {
-     var $Rrange = $("#Rrange");
-     var Rtrack = function (data) {
-     };
-    $("#Rrange").ionRangeSlider({
-        hide_min_max: true,
-        keyboard: true,
-        min: 1,
-        max: 50,
-        from: 5,
-        grid: true,
-        onStart: Rtrack,
-        onChange: Rtrack,
-        onFinish: Rtrack,
-        onUpdate: Rtrack
-    });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript" src="js/fileLoader.js"></script>
+    <script type="text/javascript" src="js/elementContr.js"></script>
 
-  });
-    </script>
   </body>
 </html>
