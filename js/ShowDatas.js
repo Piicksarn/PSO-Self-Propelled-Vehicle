@@ -1,3 +1,7 @@
+$( document ).ready(function(){
+  $('#loadSet').hide();
+});
+
 /**
  * @name splitDatas
  * @function A function for spliting the string of nList, which stored the datas with space.
@@ -20,9 +24,9 @@ function splitDatas() {
  * @function A function for the loading data on the frame
  */
 function showSet() {
+  $('#loadSet').show();
   splitDatas();
-  var container = $('#loadSet'),
-  table = $('<table>'),
+  table = $('#dataTable'),
   tr = $('<tr>');
 
   /* Set the titles for the loading datas */
@@ -42,6 +46,4 @@ function showSet() {
     for (var data in dataList[index])
       tr.append('<td>' + dataList[index][data] + '</td>');
     table.append(tr);
-  }
-  container.append(table);
-}
+  }}
