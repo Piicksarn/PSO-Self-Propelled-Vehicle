@@ -1,31 +1,14 @@
 var setTwo = new Array(
-  "train_0_D2.txt",
-  "train_1_D2.txt",
-  "train_2_D2.txt",
-  "train_3_D2.txt",
-  "train_4_D2.txt",
-  "train_5_D2.txt",
-  "train_6_D2.txt",
-  "train_7_D2.txt",
-  "train_8_D2.txt",
-  "train_9_D2.txt",
-  "train_10_D2.txt",
-  "train_11_D2.txt",
+  "train_0_D2.txt", "train_1_D2.txt", "train_2_D2.txt",
+  "train_3_D2.txt", "train_4_D2.txt", "train_5_D2.txt",
+  "train_6_D2.txt", "train_7_D2.txt", "train_8_D2.txt",
+  "train_9_D2.txt", "train_10_D2.txt", "train_11_D2.txt",
   "train_12_D2.txt"
 );
 var setOne = new Array(
-  "train_0_D1.txt",
-  "train_1_D1.txt",
-  "train_2_D1.txt",
-  "train_3_D1.txt",
-  "train_4_D1.txt",
-  "train_5_D1.txt",
-  "train_6_D1.txt",
-  "train_7_D1.txt",
-  "train_8_D1.txt",
-  "train_9_D1.txt",
-  "train_10_D1.txt",
-  "train_11_D1.txt",
+  "train_0_D1.txt", "train_1_D1.txt", "train_2_D1.txt", "train_3_D1.txt",
+  "train_4_D1.txt", "train_5_D1.txt", "train_6_D1.txt", "train_7_D1.txt",
+  "train_8_D1.txt", "train_9_D1.txt", "train_10_D1.txt", "train_11_D1.txt",
   "train_12_D1.txt"
 );
 
@@ -56,13 +39,13 @@ $("#activations input").change(function() {
 $("#dataLd").change(function() {
   item = $( "#dataLd option:selected" ).text();
   readFile();
+  showSet();
 });
 
 
 /**
  * readFile
  * A function for load the file content.
- *
  * @name readfile
  * @function
  */
