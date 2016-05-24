@@ -25,6 +25,52 @@
   margin-left: 40px;
   padding-top: 10px;
 }
+
+.DataSetBg {
+  padding: 15px;
+  background-color: #74b45a;
+  width: auto;
+  height: 340px;
+  float: left;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.dataTable {
+  font-family: verdana, arial, sans-serif;
+  font-size: 11px;
+  color: #333333;
+  border-color: #a9c6c9;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.dataTable tr th {
+  font-size: 14px;
+  background-color: #cf5664;
+  padding: 3px;
+  color: #fff;
+}
+.dataTable tr {
+  border-bottom-: 1px solid #C1C3D1;
+  color: #666B85;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+.dataTable tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+.dataTable tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+.dataTable tr td {
+  padding: 3px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 11px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
 .container {
   float:left;
   margin: 20px;
