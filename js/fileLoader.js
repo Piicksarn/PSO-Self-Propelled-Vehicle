@@ -40,6 +40,7 @@ $("#dataLd").change(function() {
   item = $( "#dataLd option:selected" ).text();
   readFile();
   showSet();
+  $('#Btn_trn').show();
 });
 
 
@@ -67,3 +68,24 @@ function readFile() {
        nList.push(list[i]);
   }
 }
+
+/**
+ * @name splitDatas
+ * @function A function for spliting the string of nList, which stored the datas with space.
+ *           Called by function: showSet.
+ * @var {dataList} A list of arrays, each of arrays means a data of node.
+ * @var {dataLgn} Numbers data of a node.
+ */
+var dataList = new Array();
+var dataLgn;
+function splitDatas() {
+  for (var i in nList) {
+    var datas = nList[i].split(" ");
+    dataList.push(datas);
+  }
+  dataLgn = dataList[0].length;
+}
+
+$('#Btn_trn').click(function(){
+  setAgent();
+});
