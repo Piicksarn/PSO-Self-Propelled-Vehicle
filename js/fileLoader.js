@@ -87,5 +87,9 @@ function splitDatas() {
 }
 
 $('#Btn_trn').click(function(){
-  setAgent();
+  trainPSO();
+  var i = 3;
+  $('#phi_show').text("Phi 1 : " + $('#phi1').val() + "Phi 2 : " + $('#phi2').val());
+  phi_1 = $('#phi1').val();
+  phi_2 = $('#phi2').val();
 });

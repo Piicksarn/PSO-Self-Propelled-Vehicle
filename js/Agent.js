@@ -1,9 +1,11 @@
-var Agent = function(front, right, left) {
+var Agent = function(datas){
   this.position = new Array();
-  this.front = front;
-  this.left = right;
-  this.right = left;
+  this.dataSet = datas;
   this.velocity = new Array();
+  this.weight = new Array();
+  this.mean = new Array();
+  this.sigma = new Array();
+  this.theta = 0;
 };
 Agent.prototype = {
   /**
@@ -49,6 +51,10 @@ Agent.prototype = {
       // console.log("sigma-[ "+ sigma[i] + " ]\n");
     }
     this.position = agent_Pos;
+    this.mean = mean;
+    this.wight = weight;
+    this.sigma = sigma;
+    this.theta = theta;
   },
   getPos: function() {
     return this.position;
