@@ -85,11 +85,15 @@ function splitDatas() {
   }
   dataLgn = dataList[0].length;
 }
-
+/**
+ * @var {time} iteration time
+ */
+var time = 3000;
 $('#Btn_trn').click(function(){
-  trainPSO();
-  var i = 3;
+  setAgent();
+  for(var i = 0; i < time; i++)
+  //while(groupBest_value > 0.005)
+    trainPSO();
+  
   $('#phi_show').text("Phi 1 : " + $('#phi1').val() + "Phi 2 : " + $('#phi2').val());
-  phi_1 = $('#phi1').val();
-  phi_2 = $('#phi2').val();
 });

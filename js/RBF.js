@@ -1,13 +1,19 @@
-function rbf(weight, mean, inputArray, theta, sigma) {
+function rbf(theta, weight, mean, sigma) {
 
-  // Calculate for Basis function of RBF
-  //phi = Math.exp(-1 * norm * (/(sigma * sigma)));
-  var norm = 0;
-  for(var i in mean) {
-    norm = norm + Math.pow((inputArray[i] - mean[i]), 2);
+  var result = theta;
+  var errorSum = 0;
+  for(var dataIndex in dataList) {
+    result = theta;
+    for(var i in mean) {
+      var norm = 0;
+      for(var j in mean[i]) {
+        norm += Math.pow((dataList[dataIndex][i] - mean[i][j]), 2);
+      }
+      result = result + weight[i] * Math.exp((-0.5) * norm / (sigma[i] *sigma[i]));
+      errorSum = errorSum + (dataList[dataIndex][dataLgn - 1] - result);
+    }
   }
-  var phi = Math.exp(-1 * norm * (/(sigma * sigma)));
-
+  return Math.pow(errorSum, 2) / 2;
 }
 
 function E() {
