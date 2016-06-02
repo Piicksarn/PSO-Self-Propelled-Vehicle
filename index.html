@@ -21,13 +21,20 @@
                 <input type="radio" name="myRadio" id="set2" value="2" /> Set 2 (Without Pos.)
               </form>
             </div>
-
           </div>
           <div class="settingItm">
             <label for="activations" id="ld">Load Data</label>
             <div class="select">
               <select id="dataLd"></select>
+              </br>
+              Phi_1
+              <input type="text" id="phi1"></input>
+              phi_2
+              <input type="text" id="phi2"/></input>
             </div>
+          </div>
+          <div class="settingItm">
+            <input type="button" id="Btn_trn" value="Train"></input>
           </div>
           <div style="width:160px; float:left; " class="settingItm">
             Angle
@@ -49,9 +56,10 @@
         </div>
         <!--The result Data and Reading Data-->
         <div class="DataSetBg" id="loadSet">
-          <div style="height: 340px; overflow: scroll;">
+          <div style="height: 290px; overflow: scroll;">
             <table class="dataTable" id="dataTable"></table>
           </div>
+          <p id="phi_show"></p>
         </div>
       </div>
     </div>
@@ -60,5 +68,10 @@
     <script type="text/javascript" src="js/fileLoader.js"></script>
     <script type="text/javascript" src="js/elementContr.js"></script>
     <script type="text/javascript" src="js/showDatas.js"></script>
+    <script type="text/javascript" src="js/Canvas.js"></script>
+    <script type="text/javascript" src="js/PSO.js"></script>
+    <script type="text/javascript" src="js/Agent.js"></script>
+    <script type="text/javascript" src="js/Vehicle.js"></script>
+    <script type="text/javascript" src="js/RBF.js"></script>
   </body>
 </html>
