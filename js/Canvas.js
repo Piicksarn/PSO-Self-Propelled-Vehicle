@@ -1,10 +1,3 @@
-$(function() {
-  //setMaze();
-  setWalls();
-  drawMap();
-  $("#go").hide();
-});
-
 var ang_alpha = 0;
 var ang_phi = math.pi / 2 + 0 * math.pi / 180;;
 var canvas = $("#canvas");
