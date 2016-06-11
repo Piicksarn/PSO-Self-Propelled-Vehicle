@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/css/ion.rangeSlider.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/css/ion.rangeSlider.skinFlat.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/3.2.3/sweetalert2.min.css">
   <head>
   <body>
     <!--Body-->
@@ -35,6 +36,7 @@
           </div>
           <div class="settingItm">
             <input type="button" id="Btn_trn" value="Train"></input>
+            <input type="button" id="go" value="Go!"></input>
           </div>
           <div style="width:160px; float:left; " class="settingItm">
             Angle
@@ -50,7 +52,7 @@
         <!--For canvas-->
         <div class="container">
           <canvas id="canvas" style="background-color: #fff;   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-" width="600" height="300" ></canvas>
+"width="450" height="450" ></canvas>
           <div style="background-color: #74b45a; width: 100%; height: 50px; margin-top:20px; border-radius:10px;">
           </div>
         </div>
@@ -60,19 +62,21 @@
             <table class="dataTable" id="dataTable"></table>
           </div>
           <p id="phi_show"></p>
+          <p id="phi2_show"></p>
         </div>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.1.0/math.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/js/ion.rangeSlider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/3.2.3/sweetalert2.min.js"></script>
     <script type="text/javascript" src="js/fileLoader.js"></script>
     <script type="text/javascript" src="js/elementContr.js"></script>
     <script type="text/javascript" src="js/showDatas.js"></script>
     <script type="text/javascript" src="js/Canvas.js"></script>
-    <script type="text/javascript" src="js/PSO.js"></script>
     <script type="text/javascript" src="js/Agent.js"></script>
-    <script type="text/javascript" src="js/Vehicle.js"></script>
+    <script type="text/javascript" src="js/PSO.js"></script>
     <script type="text/javascript" src="js/RBF.js"></script>
+    <script type="text/javascript" src="js/Line.js"></script>
   </body>
 </html>

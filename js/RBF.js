@@ -15,9 +15,3 @@ function rbf(theta, weight, mean, sigma) {
   }
   return Math.pow(errorSum, 2) / 2;
 }
-
-function E() {
-
-
-
-}

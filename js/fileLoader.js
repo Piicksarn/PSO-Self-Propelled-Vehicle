@@ -88,12 +88,29 @@ function splitDatas() {
 /**
  * @var {time} iteration time
  */
-var time = 3000;
+var time = 100;
 $('#Btn_trn').click(function(){
   setAgent();
   for(var i = 0; i < time; i++)
   //while(groupBest_value > 0.005)
     trainPSO();
-  
+    swal({
+      title: "An input!",
+      text: "Write something interesting:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "Write something" },
+      function(inputValue, inputtest){
+        if (inputValue === false)
+        return false;
+        if (inputValue === "") {
+          swal.showInputError("You need to write something!");
+          return false
+        }
+      
+      swal("Nice!", "You wrote: " + inputValue, "success");
+    });
   $('#phi_show').text("Phi 1 : " + $('#phi1').val() + "Phi 2 : " + $('#phi2').val());
 });
