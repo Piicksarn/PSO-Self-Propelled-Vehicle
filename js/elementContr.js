@@ -1,3 +1,13 @@
+$(function() {
+  //setMaze();
+  setWalls();
+  drawMap();
+  $("#go").hide();
+  $(".menu").toggleClass("closed");
+  $('#startBtn').hide();
+
+});
+
 // Setting the initial angle
 var $range = $("#range"),
 $result = $("#angle");

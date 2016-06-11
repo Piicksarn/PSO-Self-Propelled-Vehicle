@@ -1,5 +1,4 @@
 function rbf(theta, weight, mean, sigma) {
-
   var result = theta;
   var errorSum = 0;
   for(var dataIndex in dataList) {

@@ -3,7 +3,6 @@
  * @var {phi_1}
  * @var {phi_2}
  */
-var agentAmount = 10;
 var agentList = new Array();
 var groupBest = new Array();
 var groupBest_value = Number.MAX_VALUE;
@@ -22,7 +21,7 @@ function trainPSO() {
 }
 
 function setAgent() {
-  for( var i = 0; i < agentAmount; i++) {
+  for( var i = 0; i < $('#amount').val(); i++) {
     var agent = new Agent();
     agent.initialize();
     //agent.calFunction();
