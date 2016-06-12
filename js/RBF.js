@@ -8,9 +8,11 @@ function rbf(theta, weight, mean, sigma) {
       for(var j in mean[i]) {
         norm += Math.pow((dataList[dataIndex][i] - mean[i][j]), 2);
       }
-      result = result + weight[i] * Math.exp((-0.5) * norm / (sigma[i] *sigma[i]));
-      errorSum = errorSum + (dataList[dataIndex][dataLgn - 1] - result);
+      result = result + weight[i] * Math.exp((-0.5) * norm / (sigma[i] * sigma[i]));
+
     }
+    errorSum = errorSum + math.abs(dataList[dataIndex][dataLgn - 1] - result);
+  //  console.log(dataIndex + " - Yn: " + dataList[dataIndex][dataLgn - 1] + "  result: " + result);
   }
   return Math.pow(errorSum, 2) / 2;
 }

@@ -72,7 +72,6 @@ Agent.prototype = {
   updatePos: function() {
     for(var i in this.position)
       this.position[i] = this.position[i] + this.velocity[i];
-    //console.log("postion: " + this.position);
     this.updateBest();
   },
   updateBest: function() {
@@ -107,28 +106,29 @@ Agent.prototype = {
     //             " gtoupBest: " + agentG);
   },
   calFunction: function() {
-    var mean = new Array(neuroNum);
-    var theta = this.position[0];
-    var weight = this.position.slice(1,neuroNum + 1);
-    var meanBegin = 1 + neuroNum;
-    var meanEnd = meanBegin + dataLgn - 1;
-    for(var i = 0; i < neuroNum; i++) {
-      mean[i] = this.position.slice(meanBegin, meanEnd);
-      meanBegin = meanEnd;
-      meanEnd = meanBegin + dataLgn - 1;
-    }
-    //console.log("b: " + meanBegin);
-    var sigma = this.position.slice(meanBegin, this.position.length);
-  // //  for(var i in weight) {
-  //      console.log("w: " + weight);
-  //      //console.log("m:" + mean);
-  //      console.log("s:"+ sigma);
-  //      console.log("position" + this.position);
-  // //  }
-  // for(var i = 0; i < neuroNum; i++) {
-  //   console.log("mean: " + mean[i]);
-  // }
-    this.Error = rbf(theta, weight, mean, sigma);
+  //   var mean = new Array(neuroNum);
+  //   var theta = this.position[0];
+  //   var weight = this.position.slice(1,neuroNum + 1);
+  //   var meanBegin = 1 + neuroNum;
+  //   var meanEnd = meanBegin + dataLgn - 1;
+  //   for(var i = 0; i < neuroNum; i++) {
+  //     mean[i] = this.position.slice(meanBegin, meanEnd);
+  //     meanBegin = meanEnd;
+  //     meanEnd = meanBegin + dataLgn - 1;
+  //   }
+  //   //console.log("b: " + meanBegin);
+  //   var sigma = this.position.slice(meanBegin, this.position.length);
+  // // //  for(var i in weight) {
+  // //      console.log("w: " + weight);
+  // //      //console.log("m:" + mean);
+  // //      console.log("s:"+ sigma);
+  // //      console.log("position" + this.position);
+  // // //  }
+  // // for(var i = 0; i < neuroNum; i++) {
+  // //   console.log("mean: " + mean[i]);
+  // // }
+    var para = sliceData(this.position);
+    this.Error = rbf(para[0], para[1], para[2], para[3]);
   }
 
 }

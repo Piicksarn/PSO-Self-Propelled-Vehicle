@@ -9,22 +9,17 @@ var groupBest_value = Number.MAX_VALUE;
 var vMax = 0.5;
 
 function trainPSO() {
-  //console.log("first: " + agentList[0].velocity);
   for( var i = 0; i < agentList.length; i++) {
     agentList[i].calFunction();
   }
   searchGBest();
   updateVelocity();
-
-  console.log("==========================================")
-  console.log("Minimal Error value: " + groupBest_value );
-}
+ }
 
 function setAgent() {
   for( var i = 0; i < $('#amount').val(); i++) {
     var agent = new Agent();
     agent.initialize();
-    //agent.calFunction();
     agentList.push(agent);
   }
 }
@@ -34,13 +29,14 @@ function searchGBest() {
     if(agentList[i].getError() < groupBest_value) {
       groupBest_value = agentList[i].getError();
       groupBest = agentList[i].getPos();
+      var para = sliceData(groupBest);
+      best4Test = sliceData(groupBest);
+      console.log("test-best: " + groupBest_value);
     }
 }
 
 function updateVelocity() {
   for(var i in agentList) {
     agentList[i].updateVel(groupBest);
-    // console.log("-----------------------------");
   }
-
 }

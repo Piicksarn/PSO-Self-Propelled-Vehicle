@@ -1,5 +1,4 @@
-var ang_alpha = 0;
-var ang_phi = math.pi / 2 + 0 * math.pi / 180;;
+var ang_phi = math.pi / 2 + 0 * math.pi / 180;
 var canvas = $("#canvas");
 var ctx = canvas.get(0).getContext("2d");
 var set = false;
@@ -10,10 +9,6 @@ var vehicle = {
   xPosition: 0,
   yPosition: 0
 }
-$("#go").click(function(e) {
-  alert("click go!");
-  newPosition();
-});
 
 canvas.click(function(e) {
   var x = e.clientX - $(this).offset().left;
@@ -25,7 +20,7 @@ canvas.click(function(e) {
       vehicle.yPosition = mapToCal(x, y)[1],
       setLine(mapToCal(x, y)),
       $("#go").show()
-    ) : swal('Out of range', '', 'error');
+    ) : set = false;
   }
 });
 
