@@ -85,10 +85,7 @@ function splitDatas() {
   }
   dataLgn = dataList[0].length;
 }
-/**
- * @var {time} iteration time
- */
-//var time = 10;
+
 $('#Btn_trn').click(function(){
   setAgent();
   //console.log("time: "+ $('#iteration').val() + " amount:" + $('#amount').val());
@@ -98,13 +95,13 @@ $('#Btn_trn').click(function(){
   //   trainPSO();
   // }
   var counter = 0;
-  while(groupBest_value > 0.001) {
+  while(avgError > 20) {
     if(counter == $('#iteration').val())
       break;
-    counter ++;
+     counter ++;
     trainPSO();
   }
-  console.log("Minimal Error value: " + groupBest_value);
+  console.log(counter + "  : Minimal Error value: " + groupBest_value);
   $('#Btn_trn').hide();
   $('#startBtn').show();
   $(".menu").toggleClass("closed");

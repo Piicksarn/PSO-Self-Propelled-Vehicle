@@ -20,58 +20,24 @@ function newPosition() {
   var data = new Array();
   console.log("TEST: " + rbf(para[0],para[1],para[2],para[3]) );
   var result = para[0];
-  var errorSum = 0;
-  var errorSum2 = 0;
-  for(var dataIndex in dataList) {
-    result = para[0];
-    for(var i in para[2]) {
-      var norm = 0;
-      for(var j in para[2][i]) {
-        norm += Math.pow((dataList[dataIndex][i] - para[2][i][j]), 2);
-      }
-      result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
+  if(dataLgn == 6) {
+    data.push(vehicle.xPosition);
+    data.push(vehicle.yPosition);
+  }
+  data.push(lineList[1].getDist());
+  data.push(lineList[0].getDist());
+  data.push(lineList[2].getDist());
 
+  result = para[0];
+  for(var i in para[2]) {
+    var norm = 0;
+    for(var j in para[2][i]) {
+      norm += Math.pow((data[i] - para[2][i][j]), 2);
     }
-    errorSum = errorSum + math.abs(dataList[dataIndex][dataLgn - 1] - result);
-    console.log(dataIndex + " - Yn: " + dataList[dataIndex][dataLgn - 1] + "  result: " + result);
-   }
-  // console.log("errorSum: " + errorSum + " errorSum2 : " + errorSum2);
- //
- //
- //
- //  if(dataLgn == 6) {
- //    data.push(vehicle.xPosition);
- //    data.push(vehicle.yPosition);
- //  }
- //  data.push(lineList[1].getDist());
- //  data.push(lineList[0].getDist());
- //  data.push(lineList[2].getDist());
- //
- //  result = para[0];
- //  for(var i in para[2]) {
- //    var norm = 0;
- //    for(var j in para[2][i]) {
- //      norm += Math.pow((data[i] - para[2][i][j]), 2);
- //    }
- //    result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
- //  }
- //
- //  // console.log("data2 lenght: " + para[2].length);
- //  result = para[0];
- //  for(var i in para[2]) {
- //    var norm = 0;
- //    for(var j in para[2][i]) {
- //      norm += Math.pow((data[i] - para[2][i][j]), 2);
- //    }
- //    result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
- //  }
- //
- // theta = result;
- //
- // console.log("data: " + data);
- // console.log("result:" + theta);
- // console.log("phi: " + ang_phi);
-  //console.log("data: " + data);
+    result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
+  }
+ theta = result;
+
   var x = math.add(math.cos(ang_phi + (theta * math.pi / 180)), math.sin(theta * math.pi / 180) * math.sin(ang_phi));
   x = math.add(vehicle.xPosition, x);
 
@@ -162,16 +128,20 @@ function checkInBound(x, wall) {
 
 function refresh() {
   setTimeout(function() {
+    if(set) {
+      clear();
+      drawMap();
+      var pos = newPosition();
+      while(lineList.length > 0)
+        lineList.pop();
+      vehicle.xPosition = pos[0];
+      vehicle.yPosition = pos[1];
+      drawVehicle(mapToCanvas(vehicle.xPosition, vehicle.yPosition)[0], mapToCanvas(vehicle.xPosition, vehicle.yPosition)[1]);
+      setLine(vehicle.xPosition, vehicle.yPosition);
+      if(pos[1] >= 37)
+        set = false;
+      requestAnimationFrame(refresh);
+    }
 
-    clear();
-    drawMap();
-    var pos = newPosition();
-    while(lineList.length > 0)
-      lineList.pop();
-    vehicle.xPosition = pos[0];
-    vehicle.yPosition = pos[1];
-    drawVehicle(mapToCanvas(vehicle.xPosition, vehicle.yPosition)[0], mapToCanvas(vehicle.xPosition, vehicle.yPosition)[1]);
-    setLine(vehicle.xPosition, vehicle.yPosition);
-    requestAnimationFrame(refresh);
  }, 100 );
 }

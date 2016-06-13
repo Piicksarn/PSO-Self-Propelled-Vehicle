@@ -87,7 +87,7 @@ Agent.prototype = {
 
     var alpha = Math.random();
     for(var i in this.velocity) {
-      this.velocity[i] = alpha * this.velocity[i]
+      this.velocity[i] = 2 * alpha * this.velocity[i]
                          + $('#phi1').val() * (this.best[i] - this.position[i])
                          + $('#phi2').val() * (agentG[i] - this.position[i]);
       if(this.velocity[i] > vMax)
@@ -95,15 +95,7 @@ Agent.prototype = {
       if(this.velocity[i] < -vMax)
           this.velocity[i] = -vMax;
     }
-    //console.log("vel: " + this.velocity);
-
     this.updatePos();
-    // console.log(
-    //   "vel " + this.velocity +
-    //             " phi_1: " +  $('#phi1').val() +
-    //             " phi_2: " + phi_2 +
-    //             " bestInHistory: " + this.best +
-    //             " gtoupBest: " + agentG);
   },
   calFunction: function() {
   //   var mean = new Array(neuroNum);
@@ -130,5 +122,4 @@ Agent.prototype = {
     var para = sliceData(this.position);
     this.Error = rbf(para[0], para[1], para[2], para[3]);
   }
-
 }
