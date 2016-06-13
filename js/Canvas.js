@@ -3,7 +3,7 @@ var canvas = $("#canvas");
 var ctx = canvas.get(0).getContext("2d");
 var set = false;
 var lineList = new Array();
-var scale = 9;
+var scale = 12;
 var RADIUS = 3 * scale;
 var vehicle = {
   xPosition: 0,
@@ -13,12 +13,15 @@ var vehicle = {
 canvas.click(function(e) {
   var x = e.clientX - $(this).offset().left;
   var y = e.clientY - $(this).offset().top;
+  console.log(x+" , "+y);
+  console.log(mapToCal(x, y));
   if(!set) {
     inBound(x, y) ? (
       set = true,
       vehicle.xPosition = mapToCal(x, y)[0],
       vehicle.yPosition = mapToCal(x, y)[1],
       setLine(mapToCal(x, y)),
+      drawVehicle(x, y),
       $("#go").show()
     ) : set = false;
   }
@@ -43,16 +46,16 @@ function drawVehicle(x, y) {
 }
 
 function clear() {
-  ctx.fillStyle = 'rgba(255,255,255, 1)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 1)';
   ctx.fillRect(0,0,canvas.width(), canvas.height());
 }
 
 function mapToCanvas(x, y) {
-  return [x * scale + 14 * scale, 450 - y * scale];
+  return [x * scale + 14 * scale, 480 - y * scale];
 }
 
 function mapToCal(x, y) {
-  return ([(x / scale - 14),  -(y - 450) / scale]);
+  return ([(x / scale - 14),  -(y - 480) / scale]);
 }
 
 function setLine(point) {
@@ -64,6 +67,8 @@ function setLine(point) {
     line.draw();
     lineList.push(line);
   }
+  // for(var i in lineList)
+  //   console.log(i + "-line: " + lineList[i].getDist());
 }
 
 function setWalls() {
@@ -71,9 +76,9 @@ function setWalls() {
   wallList.push(wall1);
   var wall2 = new Wall(6, 0, 0, 10);
   wallList.push(wall2);
-  var wall3 = new Wall(18, 0, 22, 50);
+  var wall3 = new Wall(18, 0, 22, 37);
   wallList.push(wall3);
-  var wall4 = new Wall(30, 0, 10, 50);
+  var wall4 = new Wall(30, 0, 10, 37);
   wallList.push(wall4);
   var wall5 = new Wall(0, 10, 6, 30);
   wallList.push(wall5);
@@ -81,7 +86,7 @@ function setWalls() {
   wallList.push(wall6);
   var wall7 = new Wall(0, 0.001, -6, 6);
   wallList.push(wall7);
-  var wall8 = new Wall(0, 50, 22, 30);
+  var wall8 = new Wall(0, 37, 18, 30);
   wallList.push(wall8);
 }
 
@@ -152,25 +157,66 @@ var masaicColor = [
                    "rgba(202, 213, 255, 1)",
                    "rgba(253, 255, 202, 1)"
                    ]
-
+var mapIndex = 0;
 function drawMap() {
-  var colorIndex = 11;
-  for(var j = 0; j < 450; j+= scale) {
-    for(var i = 0; i < 450; i += scale) {
-      ctx.beginPath();
-      ctx.fillStyle = masaicColor[(i + j) % colorIndex];
-      ctx.fillRect(j, i, scale, scale);
-      ctx.closePath();
-      ctx.fill();
+  if(mapIndex == 2) {
+    var colorIndex = 11;
+    for(var j = 0; j < 600; j+= 3 * scale) {
+      for(var i = 0; i < 480; i += 3 * scale) {
+        ctx.beginPath();
+        ctx.fillStyle = masaicColor[(i + j) % colorIndex];
+        ctx.fillRect(j, i, 3 * scale, 3 * scale);
+        ctx.closePath();
+        ctx.fill();
+      }
     }
   }
+  if(mapIndex == 1) {
+      ctx.lineWidth = 1;
+    for(var j = 0; j < 600; j+= 15) {
+      ctx.beginPath();
+      ctx.moveTo(j, 0);
+      ctx.strokeStyle = "#0ccafc";
+      ctx.lineTo(j, 600);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    for(var j = 0; j < 600; j+= 15) {
+      ctx.beginPath();
+      ctx.moveTo(0, j);
+      ctx.strokeStyle = "#0ccafc";
+      ctx.lineTo(600, j);
+      ctx.closePath();
+      ctx.stroke();
+    }
+  }
+  if(mapIndex == 3) {
+    ctx.beginPath();
+    ctx.fillStyle = masaicColor[3];
+    ctx.fillRect(0, 0, 600, 600);
+    ctx.closePath();
+    ctx.fill();
+  }
   ctx.beginPath();
-  ctx.fillStyle = "rgba(255, 255, 250, 1)";
+  ctx.fillStyle = "rgba(164, 237, 241, 1)";
   ctx.fillRect(mapToCanvas(-6,22)[0], mapToCanvas(-6,22)[1], 12 * scale, 22 * scale);
   ctx.fillRect(mapToCanvas(6,22)[0], mapToCanvas(6,22)[1], 24 * scale, 12 * scale);
-  ctx.fillRect(mapToCanvas(18, 50)[0], mapToCanvas(18, 50)[1], 12 * scale, 28 * scale);
+  ctx.fillRect(mapToCanvas(18, 37)[0], mapToCanvas(18, 37)[1], 12 * scale, 15 * scale);
   ctx.closePath();
   ctx.fill();
+  ctx.beginPath();
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "#30d6e0"
+    ctx.moveTo(mapToCanvas(-6,22)[0], mapToCanvas(-6,22)[1]);
+    ctx.lineTo(mapToCanvas(-6,0)[0], mapToCanvas(-6,0)[1]);
+    ctx.lineTo(mapToCanvas(6,0)[0], mapToCanvas(6,0)[1]);
+    ctx.lineTo(mapToCanvas(6,10)[0], mapToCanvas(6,10)[1]);
+    ctx.lineTo(mapToCanvas(30,10)[0], mapToCanvas(30,10)[1]);
+    ctx.lineTo(mapToCanvas(30,37)[0], mapToCanvas(30,37)[1]);
+    ctx.lineTo(mapToCanvas(18,37)[0], mapToCanvas(18,37)[1]);
+    ctx.lineTo(mapToCanvas(18,22)[0], mapToCanvas(18,22)[1]);
+    ctx.closePath();
+    ctx.stroke();
 }
 
 

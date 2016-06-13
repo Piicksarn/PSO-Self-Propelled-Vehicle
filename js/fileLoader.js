@@ -88,20 +88,14 @@ function splitDatas() {
 
 $('#Btn_trn').click(function(){
   setAgent();
-  //console.log("time: "+ $('#iteration').val() + " amount:" + $('#amount').val());
-  // for(var i = 0; i < $('#iteration').val(); i++) {
-  //   if(i == $('#iteration').val() - 1 && groupBest_value > 0.0000001)
-  //     i = 0;
-  //   trainPSO();
-  // }
   var counter = 0;
-  while(avgError > 20) {
+  while(avgError > 5) {
     if(counter == $('#iteration').val())
       break;
      counter ++;
     trainPSO();
   }
-  console.log(counter + "  : Minimal Error value: " + groupBest_value);
+  console.log(counter + "  : Minimal Error value: " + groupBest_value + " avg: " + avgError);
   $('#Btn_trn').hide();
   $('#startBtn').show();
   $(".menu").toggleClass("closed");
