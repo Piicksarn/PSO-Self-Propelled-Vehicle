@@ -39,7 +39,10 @@ canvas.mousemove(function(e) {
 
 function drawVehicle(x, y) {
   ctx.beginPath();
-  inBound(x,y) ? ctx.fillStyle = "rgba(20, 20, 20, 0.7)" : ctx.fillStyle = "rgba(0, 200, 0, 0.7)";
+  if(!set)
+    inBound(x,y) ? ctx.fillStyle = "rgba(20, 20, 20, 0.7)" : ctx.fillStyle = "rgba(0, 200, 0, 0.7)";
+  else
+    ctx.fillStyle = "rgba(20, 20, 20, 0.7)";
   ctx.arc(x, y, RADIUS, 0, Math.PI*2, true);
   ctx.closePath();
   ctx.fill();
