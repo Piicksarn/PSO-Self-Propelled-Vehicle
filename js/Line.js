@@ -49,8 +49,6 @@ Line.prototype = {
     ctx.closePath();
     ctx.fill();
     console.log("===============================================");
-
-
   },
   setSurface: function() {
     var point_x = vehicle.xPosition + RADIUS / scale * math.cos(ang_phi - math.pi / 4 + ((math.pi / 4) * this.index));

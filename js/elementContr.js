@@ -2,57 +2,69 @@ $(function() {
   //setMaze();
   setWalls();
   drawMap();
-  $("#go").hide();
-  $(".menu").toggleClass("closed");
+//  $("#go").hide();
+  //$(".menu").toggleClass("closed");
   $('#startBtn').hide();
 
 });
-
-// Setting the initial angle
-var $range = $("#range"),
-$result = $("#angle");
-var track = function (data) {
-  $result.html("Angle: " + data.from);
-};
-$range.ionRangeSlider({
-  hide_min_max: true,
-  keyboard: true,
-  min: -90,
-  max: 270,
-  from: 0,
-  grid: true,
-  onStart: track,
-  onChange: track,
-  onFinish: track,
-  onUpdate: track
+$("#go").click(function(e) {
+  requestAnimationFrame(refresh);
 });
 
-$(function () {
- var $Rrange = $("#Rrange");
- var Rtrack = function (data) {
- };
-$("#Rrange").ionRangeSlider({
-    hide_min_max: true,
-    keyboard: true,
-    min: 1,
-    max: 50,
-    from: 5,
-    grid: true,
-    onStart: Rtrack,
-    onChange: Rtrack,
-    onFinish: Rtrack,
-    onUpdate: Rtrack
-});
-
-});
+var best4Test = new Array();
+var ang_phi = 90;
 
 function newPosition() {
-  //groupBest
-  // datalgn = 4 and 6
-  //var angle =
-  console.log("data best: " + groupBest);
+  var theta = 0;
+  var para = best4Test;
+  var data = new Array();
+  console.log("TEST: " + rbf(para[0],para[1],para[2],para[3]) );
+  var result = para[0];
+  if(dataLgn == 6) {
+    data.push(vehicle.xPosition);
+    data.push(vehicle.yPosition);
+  }
+  data.push(lineList[1].getDist());
+  data.push(lineList[0].getDist());
+  data.push(lineList[2].getDist());
 
+  result = para[0];
+  for(var i in para[2]) {
+    var norm = 0;
+    for(var j in para[2][i]) {
+      norm += Math.pow((data[i] - para[2][i][j]), 2);
+    }
+    result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
+  }
+ theta = result;
+
+  var x = math.add(math.cos(ang_phi + (theta * math.pi / 180)), math.sin(theta * math.pi / 180) * math.sin(ang_phi));
+  x = math.add(vehicle.xPosition, x);
+
+  var y = math.subtract(math.sin(ang_phi + (theta * math.pi / 180)), math.sin(theta * math.pi / 180) * math.cos(ang_phi));
+  y =  math.add(vehicle.yPosition, y);
+
+  ang_phi = ang_phi - math.asin(2 * math.sin(theta * math.pi / 180) / 3);
+//  console.log("acsin:" + math.asin(2 * math.sin(angle_theta * math.pi / 180 ) / 3 * math.pi / 180));
+
+  return [x, y];
 }
+
+function sliceData(dataArray) {
+  var mean = new Array(neuroNum);
+  var theta = dataArray[0];
+  var weight = dataArray.slice(1,neuroNum + 1);
+  var meanBegin = 1 + neuroNum;
+  var meanEnd = meanBegin + dataLgn - 1;
+  for(var i = 0; i < neuroNum; i++) {
+    mean[i] = dataArray.slice(meanBegin, meanEnd);
+    meanBegin = meanEnd;
+    meanEnd = meanBegin + dataLgn - 1;
+  }
+  var sigma = dataArray.slice(meanBegin, dataArray.length);
+  return [theta, weight, mean, sigma];
+}
+
 function inBound(x , y) {
   if( x - 3 * scale < mapToCanvas(-6, 0)[0])
     return false;
@@ -71,7 +83,7 @@ function calDist(center, surface, line) {
     var intPoint = intersect(center, surface, wallList[i]);
       if(intPoint != null){
         interList.push(intPoint);
-        console.log("cross points: " + intPoint);
+      //  console.log("cross points: " + intPoint);
       }
   }
   var min = 300;
@@ -112,4 +124,24 @@ function checkInBound(x, wall) {
   if(x >= wall.getMin() && x <= wall.getMax())
       return true;
   return false;
+}
+
+function refresh() {
+  setTimeout(function() {
+    if(set) {
+      clear();
+      drawMap();
+      var pos = newPosition();
+      while(lineList.length > 0)
+        lineList.pop();
+      vehicle.xPosition = pos[0];
+      vehicle.yPosition = pos[1];
+      drawVehicle(mapToCanvas(vehicle.xPosition, vehicle.yPosition)[0], mapToCanvas(vehicle.xPosition, vehicle.yPosition)[1]);
+      setLine(vehicle.xPosition, vehicle.yPosition);
+      if(pos[1] >= 37)
+        set = false;
+      requestAnimationFrame(refresh);
+    }
+
+ }, 100 );
 }
