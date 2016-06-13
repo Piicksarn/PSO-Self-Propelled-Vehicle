@@ -11,14 +11,30 @@ $("#go").click(function(e) {
   requestAnimationFrame(refresh);
 });
 
+$("#bg input").change(function() {
+  if($('input[name="myRadio"]:checked', '#bg').val()== 2) {
+    mapIndex = 2;
+
+  }
+  else if($('input[name="myRadio"]:checked', '#bg').val()== 1) {
+    mapIndex = 1;
+  }
+  else if($('input[name="myRadio"]:checked', '#bg').val()== 3) {
+    mapIndex = 3;
+  }
+  set = false;
+  clear();
+  drawMap();
+});
+
+
 var best4Test = new Array();
 var ang_phi = 90;
-
+var ang = 0;
 function newPosition() {
   var theta = 0;
   var para = best4Test;
   var data = new Array();
-  console.log("TEST: " + rbf(para[0],para[1],para[2],para[3]) );
   var result = para[0];
   if(dataLgn == 6) {
     data.push(vehicle.xPosition);
@@ -37,7 +53,7 @@ function newPosition() {
     result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
   }
  theta = result;
-
+ ang = theta;
   var x = math.add(math.cos(ang_phi + (theta * math.pi / 180)), math.sin(theta * math.pi / 180) * math.sin(ang_phi));
   x = math.add(vehicle.xPosition, x);
 
@@ -81,6 +97,7 @@ function calDist(center, surface, line) {
   var interList = new Array();
   for (var i = 0; i < wallList.length; i++) {
     var intPoint = intersect(center, surface, wallList[i]);
+    console.log("cross points: " + intPoint);
       if(intPoint != null){
         interList.push(intPoint);
       //  console.log("cross points: " + intPoint);
@@ -136,12 +153,14 @@ function refresh() {
         lineList.pop();
       vehicle.xPosition = pos[0];
       vehicle.yPosition = pos[1];
-      drawVehicle(mapToCanvas(vehicle.xPosition, vehicle.yPosition)[0], mapToCanvas(vehicle.xPosition, vehicle.yPosition)[1]);
       setLine(vehicle.xPosition, vehicle.yPosition);
-      if(pos[1] >= 37)
+      drawVehicle(mapToCanvas(vehicle.xPosition, vehicle.yPosition)[0], mapToCanvas(vehicle.xPosition, vehicle.yPosition)[1]);
+      if(pos[1] + 4  >= 37)
         set = false;
       requestAnimationFrame(refresh);
     }
-
+    $('#xpos').text(" X pos : " + math.round(vehicle.xPosition));
+    $('#ypos').text(" Y pos : " + math.round(vehicle.yPosition));
+    $('#angle').text("Angle : " + math.round(ang));
  }, 100 );
 }

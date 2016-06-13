@@ -22,33 +22,30 @@ Line.prototype = {
     return this.distance;
   },
   draw: function() {
-
-    // ctx.lineWidth = 2;
-    // ctx.beginPath();
-    // ctx.moveTo(this.start[0], this.start[1]);
-    // ctx.strokeStyle = "#111"
-    // ctx.lineTo(this.surface[0], this.surface[1]);
-    // ctx.closePath();
-    // ctx.stroke();
     var surface_onCanvas = mapToCanvas(this.surface[0], this.surface[1]);
     var cross_onCanvas = mapToCanvas(this.end[0], this.end[1]);
+    var center = mapToCanvas(vehicle.xPosition, vehicle.yPosition);
+    // Draw sensor lines
+    ctx.lineWidth = 4;
     ctx.beginPath();
-    ctx.fillStyle = "rgba(20, 20, 20, 0.7)";
-    ctx.arc(surface_onCanvas[0], surface_onCanvas[1], 2, 0, Math.PI*2, true);
-    ctx.closePath();
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(cross_onCanvas[0], cross_onCanvas[1]);
-    ctx.strokeStyle = "#E34"
-    ctx.lineTo(surface_onCanvas[0], surface_onCanvas[1]);
+    ctx.moveTo(center[0], center[1]);
+    ctx.strokeStyle = "rgba(236, 90, 80,1)"
+    ctx.lineTo(cross_onCanvas[0], cross_onCanvas[1]);
     ctx.closePath();
     ctx.stroke();
+
+    // Draw the end point
     ctx.beginPath();
-    ctx.fillStyle = "rgba(20, 20, 20, 0.7)";
-    ctx.arc(cross_onCanvas[0], cross_onCanvas[1], 5, 0, Math.PI*2, true);
+    ctx.arc(cross_onCanvas[0], cross_onCanvas[1], 10, 0, Math.PI*2, true)
+    ctx.fillStyle = "rgba(236, 90, 80,1)";
     ctx.closePath();
     ctx.fill();
-    console.log("===============================================");
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "rgba(236, 80, 96, 1)";
+    ctx.arc(cross_onCanvas[0], cross_onCanvas[1], 15, 0, Math.PI*2, true);
+    ctx.closePath();
+    ctx.stroke();
   },
   setSurface: function() {
     var point_x = vehicle.xPosition + RADIUS / scale * math.cos(ang_phi - math.pi / 4 + ((math.pi / 4) * this.index));

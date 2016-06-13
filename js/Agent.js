@@ -54,10 +54,6 @@ Agent.prototype = {
     this.velocity.length = agent_Pos.length;
     this.velocity.fill(0);
     this.best = this.position;
-    // console.log("[demension] position: " + this.position.length +
-    //                           " sigma: " + this.sigma.length +
-    //                           " mean: " + this.mean.length +
-    //                           " weight: " + this.weight.length);
   },
   getError: function() {
     return this.Error;
@@ -87,7 +83,7 @@ Agent.prototype = {
 
     var alpha = Math.random();
     for(var i in this.velocity) {
-      this.velocity[i] = 2 * alpha * this.velocity[i]
+      this.velocity[i] = alpha * this.velocity[i]
                          + $('#phi1').val() * (this.best[i] - this.position[i])
                          + $('#phi2').val() * (agentG[i] - this.position[i]);
       if(this.velocity[i] > vMax)

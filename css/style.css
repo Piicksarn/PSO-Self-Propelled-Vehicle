@@ -1,3 +1,33 @@
+.pos {
+  float: right;
+  width: 30%;
+  float: left;
+  font-family: courier;
+  color: #fff;
+  font-size: 28px;
+  margin-top: 36px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.set {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  height: auto;
+  width: 300px;
+  background-color: #dd7486;
+  float: left;
+  margin: 20px;
+  border-radius:10px;
+}
+.setBg {
+  font-family: courier;
+  color: #fff;
+  font-size: 18px;
+  list-style-type: none;
+  line-height: 50px;
+  width: 60%;
+  margin: auto;
+  padding-left: 20px;
+}
 .set_btn {
   background-color: #0fa1e4;
   border: none;
@@ -14,7 +44,14 @@
 .set_btn:active {
   background-color: #35669b;
 }
-
+.fontSet {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 32px;
+  font-family: courier;
+}
 .menu {
   width: 100%;
   height: 100%;
@@ -149,9 +186,9 @@ p img {
 
 .DataSetBg {
   padding: 15px;
-  background-color: #74b45a;
+  background-color: #74badd;
   width: auto;
-  height: 340px;
+  height: 220px;
   float: left;
   margin: 20px;
   text-align: center;
@@ -197,7 +234,7 @@ p img {
   margin: 20px;
   margin-left: 50px;
   background-color: inherit;
-  width: 480px;
+  width: 600px;
 }
 h1 {
   font-family: Verdana;

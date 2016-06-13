@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.2/js/ion.rangeSlider.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.css.min.js"></script>
   <head>
-  <body>
+  <body style="background-color: #fff7cf">
     <div id="toggle"></div>
     <div class="menu closed">
       </br>
@@ -34,7 +34,6 @@
         <li> Input The param.</li>
           Phi 1 : <input type="text" id="phi1"></input>
           Phi 2 : <input type="text" id="phi2"/></input>
-
         <li>
           </br>
           <input class="set_btn" type="button" id="Btn_trn" value="Train"></input>
@@ -42,42 +41,41 @@
           </br>
         </li>
       </ul>
-
     </div>
 
     <!--Body-->
-    <div style="height: 105%; background-color: #FFF;">
-
-
-
-
-
-      <!--Title-->
-      <div class="title">
-        <h1>Particle Swarm Optimization <span>Self Propelled Vehicle</span></h1>
-      </div>
-
+    <div style="height: 105%; ">
       <div>
         <!--For canvas-->
         <div class="container">
-          <canvas id="canvas" style="background-color: #fff;   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-"width="450" height="450" ></canvas>
-          <div style="background-color: #74b45a; width: 100%; height: 50px; margin-top:20px; border-radius:10px;">
-            <input type="button" id="go" value="Go!"></input>
-
-            Angle
-            <input type="text" id="range" value="" name="range" />
-            Rate
-            <input type="text" id="Rrange" value="" name="Rrange" />
+          <canvas id="canvas" style="background-color: #fff;  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+"width="600" height="500" ></canvas>
+          <div style="background-color: #30d6e0; width: 100%; height: 100px; margin-top:20px; border-radius:10px;">
+             <div class="pos" id="xpos"><b id="CPos">X :</div>
+             <div class="pos" id="ypos"><b id="CPos">Y :</div>
+             <div class="pos" id="angle"><b id="CPos">Angle:</div>
+          </div>
+        </div>
+        <div class="set">
+          <div style="width: 60%; height: 50px; margin: auto; margin-top: 20px; text-align: center;">
+            <p class="fontSet">Background</p>
+          </div>
+          <div class="setBg">
+              <form id="bg">
+                <input type="radio" name="myRadio" id="set1" value="1"/> Grid<br/>
+                <input type="radio" name="myRadio" id="set2" value="2" /> Mazic<br/>
+                <input type="radio" name="myRadio" id="set2" value="3" /> Color
+              </form>
+          </div>
+          <div style="margin: 20px; text-align: center;" >
+            <input type="button" id="go" value="Go!" class="set_btn" ></input>
           </div>
         </div>
         <!--The result Data and Reading Data-->
         <div class="DataSetBg" id="loadSet">
-          <div style="height: 290px; overflow: scroll;">
+          <div style="height: 210px; overflow: scroll;">
             <table class="dataTable" id="dataTable"></table>
           </div>
-          <p id="phi_show"></p>
-          <p id="phi2_show"></p>
         </div>
       </div>
     </div>
