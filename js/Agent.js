@@ -39,9 +39,8 @@ Agent.prototype = {
       agent_Pos.push(weight[i]);
     }
     for(var i in mean) {
-      for(var j in mean[i]) {
+      for(var j in mean[i])
         agent_Pos.push(mean[i][j]);
-      }
     }
     for(var i in sigma) {
       agent_Pos.push(sigma[i]);
@@ -58,10 +57,6 @@ Agent.prototype = {
   getError: function() {
     return this.Error;
   },
-  getVel: function() {
-  //  console.log(this.mean[0] + " velocity:"+ this.velocity);
-
-  },
   getPos: function() {
     return this.position;
   },
@@ -75,12 +70,8 @@ Agent.prototype = {
       this.best = this.position;
       this.best_value = this.Error;
     }
-    //console.log("best: " + this.best_value);
-    //console.log("bestPos: " + this.best);
-
   },
   updateVel: function(agentG) {
-
     var alpha = Math.random();
     for(var i in this.velocity) {
       this.velocity[i] = alpha * this.velocity[i]
@@ -94,27 +85,6 @@ Agent.prototype = {
     this.updatePos();
   },
   calFunction: function() {
-  //   var mean = new Array(neuroNum);
-  //   var theta = this.position[0];
-  //   var weight = this.position.slice(1,neuroNum + 1);
-  //   var meanBegin = 1 + neuroNum;
-  //   var meanEnd = meanBegin + dataLgn - 1;
-  //   for(var i = 0; i < neuroNum; i++) {
-  //     mean[i] = this.position.slice(meanBegin, meanEnd);
-  //     meanBegin = meanEnd;
-  //     meanEnd = meanBegin + dataLgn - 1;
-  //   }
-  //   //console.log("b: " + meanBegin);
-  //   var sigma = this.position.slice(meanBegin, this.position.length);
-  // // //  for(var i in weight) {
-  // //      console.log("w: " + weight);
-  // //      //console.log("m:" + mean);
-  // //      console.log("s:"+ sigma);
-  // //      console.log("position" + this.position);
-  // // //  }
-  // // for(var i = 0; i < neuroNum; i++) {
-  // //   console.log("mean: " + mean[i]);
-  // // }
     var para = sliceData(this.position);
     this.Error = rbf(para[0], para[1], para[2], para[3]);
   }

@@ -1,12 +1,16 @@
 /**
  * @var {agentList} is an container for agents.
- * @var {phi_1}
- * @var {phi_2}
+ * @var {groupBest} for saving the best position array.
+ * @var {groupBest_value} the best value of positions.
+ * @var {vmax} set the bound of the velocity.
+ * @var {avgError} for saving the smallest average error of positions.
  */
+
 var agentList = new Array();
 var groupBest = new Array();
 var groupBest_value = Number.MAX_VALUE;
 var vMax = 20;
+var avgError = 10000;
 
 function trainPSO() {
   for( var i = 0; i < agentList.length; i++) {
@@ -16,14 +20,6 @@ function trainPSO() {
   updateVelocity();
  }
 
-function setAgent() {
-  for( var i = 0; i < $('#amount').val(); i++) {
-    var agent = new Agent();
-    agent.initialize();
-    agentList.push(agent);
-  }
-}
-var avgError = 10000;
 function searchGBest() {
   for(var i in agentList)
     if(agentList[i].getError() < groupBest_value) {
@@ -31,12 +27,18 @@ function searchGBest() {
       groupBest = agentList[i].getPos();
       best4Test = sliceData(groupBest);
       avgError = (groupBest_value * 2) / $('#amount').val();
-      console.log("test-best: " + groupBest_value + " avgError : " + avgError);
     }
 }
 
 function updateVelocity() {
-  for(var i in agentList) {
+  for(var i in agentList)
     agentList[i].updateVel(groupBest);
+}
+
+function setAgent() {
+  for( var i = 0; i < $('#amount').val(); i++) {
+    var agent = new Agent();
+    agent.initialize();
+    agentList.push(agent);
   }
 }

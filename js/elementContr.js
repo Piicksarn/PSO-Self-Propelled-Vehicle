@@ -1,32 +1,24 @@
 $(function() {
-  //setMaze();
   setWalls();
   drawMap();
-//  $("#go").hide();
-  //$(".menu").toggleClass("closed");
+  $(".menu").toggleClass("closed");
   $('#startBtn').hide();
-
 });
 $("#go").click(function(e) {
   requestAnimationFrame(refresh);
 });
 
 $("#bg input").change(function() {
-  if($('input[name="myRadio"]:checked', '#bg').val()== 2) {
+  if($('input[name="myRadio"]:checked', '#bg').val()== 2)
     mapIndex = 2;
-
-  }
-  else if($('input[name="myRadio"]:checked', '#bg').val()== 1) {
+  else if($('input[name="myRadio"]:checked', '#bg').val()== 1)
     mapIndex = 1;
-  }
-  else if($('input[name="myRadio"]:checked', '#bg').val()== 3) {
+  else if($('input[name="myRadio"]:checked', '#bg').val()== 3)
     mapIndex = 3;
-  }
   set = false;
   clear();
   drawMap();
 });
-
 
 var best4Test = new Array();
 var ang_phi = 90;
@@ -47,22 +39,17 @@ function newPosition() {
   result = para[0];
   for(var i in para[2]) {
     var norm = 0;
-    for(var j in para[2][i]) {
+    for(var j in para[2][i])
       norm += Math.pow((data[i] - para[2][i][j]), 2);
-    }
     result = result + para[1][i] * Math.exp((-0.5) * norm / (para[3][i] * para[3][i]));
   }
- theta = result;
- ang = theta;
+  theta = result;
+  ang = theta;
   var x = math.add(math.cos(ang_phi + (theta * math.pi / 180)), math.sin(theta * math.pi / 180) * math.sin(ang_phi));
   x = math.add(vehicle.xPosition, x);
-
   var y = math.subtract(math.sin(ang_phi + (theta * math.pi / 180)), math.sin(theta * math.pi / 180) * math.cos(ang_phi));
   y =  math.add(vehicle.yPosition, y);
-
   ang_phi = ang_phi - math.asin(2 * math.sin(theta * math.pi / 180) / 3);
-//  console.log("acsin:" + math.asin(2 * math.sin(angle_theta * math.pi / 180 ) / 3 * math.pi / 180));
-
   return [x, y];
 }
 
@@ -97,11 +84,8 @@ function calDist(center, surface, line) {
   var interList = new Array();
   for (var i = 0; i < wallList.length; i++) {
     var intPoint = intersect(center, surface, wallList[i]);
-    console.log("cross points: " + intPoint);
-      if(intPoint != null){
+      if(intPoint != null)
         interList.push(intPoint);
-      //  console.log("cross points: " + intPoint);
-      }
   }
   var min = 300;
   for (var i = 0; i < interList.length; i++) {

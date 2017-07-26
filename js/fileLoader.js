@@ -36,6 +36,7 @@ $("#activations input").change(function() {
     fileName = fileName + "Set2/";
   }
 });
+
 $("#dataLd").change(function() {
   item = $( "#dataLd option:selected" ).text();
   readFile();
@@ -95,7 +96,6 @@ $('#Btn_trn').click(function(){
      counter ++;
     trainPSO();
   }
-  console.log(counter + "  : Minimal Error value: " + groupBest_value + " avg: " + avgError);
   $('#Btn_trn').hide();
   $('#startBtn').show();
   $(".menu").toggleClass("closed");
